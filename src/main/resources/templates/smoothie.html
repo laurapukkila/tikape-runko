@@ -1,0 +1,20 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Smoothie</title>
+        <meta charset="ISO-8859-1" />
+    </head>
+
+    <body>
+        <h1 th:text="${smoothie.nimi}">smoothie</h1>
+
+        <h3> Raaka-aineet: </h3>
+        <ul>
+            <li th:each="RaakaAine:${raakaaineet}">
+                <span> <span th:text="${RaakaAine.raakaaine}">raakaaine</span>, <span th:text="${RaakaAine.maara}">maara</span>, <span th:text="${RaakaAine.ohje}">ohje</span> </span>
+            </li>
+        </ul>
+        <p><a href="/smoothiepankki">Takaisin etusivulle</a></p>
+    </body>
+</html>

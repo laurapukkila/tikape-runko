@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Smoothie</title>
+        <meta charset="ISO-8859-1" />
+    </head>
+
+    <body>
+        <h1> Lisää oma smoothiesi reseptivalikoimaamme! </h1>
+        <h3> Reseptit:</h3>
+        <ul>
+            <li th:each="smoothie : ${smoothiet}">
+                <a th:href="@{~/smoothie/{id}(id=${smoothie.id})}">
+                    <span th:text="${smoothie.nimi}">Smoothie</span>
+                </a>
+            </li>
+        </ul>
+
+        <h3> Lisää uusi:</h3>
+        <form method="POST" action="/lisaasmoothie">
+            Smoothien nimi:<br/>
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+
+        <h3> Lisää raaka-aineita:</h3>
+
+        <form method="POST" action="/lisaaraakaainesmoothieen">
+            Smoothien nimi:<br/>
+            <input list="smoothiet" name="smoothie"/><br/>
+            <datalist id="smoothiet">
+                <option th:each="smoothie: ${smoothiet}"
+                        th:text="${smoothie.nimi}">Smoothie</option>
+            </datalist>
+            Raaka-aine:<br/>
+            <input list="raakaaineet" name="raakaaine"/><br/>
+            <datalist id="raakaaineet">
+                <option th:each="raakaaine: ${raakaaineet}"
+                        th:text="${raakaaine.nimi}">Raakaaine</option>
+            </datalist>
+            Määrä:<br/>
+            <input type="text" name="maara"/><br/>
+            Ohje:<br/>
+            <input type="text" name="ohje"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+        
+        <p><a href="/smoothiepankki">Takaisin etusivulle</a></p>
+
+    </body>
+</html>
